@@ -5,6 +5,6 @@
 
 2) Vehículos que no han repostado nunca en la estación E1:
 ```sql
-VEHICULOS_REPOSTADOS_E1 = Π(M) Σ(E='E1') (COMBUSTIBLE))
-VEHICULO - VEHICULOS_REPOSTADOS_E1
+VR_E1 = Π(M) Σ(E='E1') (COMBUSTIBLE)) # Vehiculos repostados en E1
+VEHICULO - VR_E1
 ```
