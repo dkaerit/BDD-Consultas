@@ -46,12 +46,29 @@ d) Estaciones en las que han repostado vehículos de todos los tipos:
 )}
 ```
 
+```lua
+{ e | ∃m, t, c (
+    VEHICULO(m, t, c) ∧
+    COMBUSTIBLE(m, _, e, _) ∧ ∀x 
+        ((VEHICULO(m, x, _) ∧ x ≠ t) ∨ ∃y 
+            (COMBUSTIBLE(m, _, e, _) ∧ x = y))
+)}
+```
+
 e) Estaciones en las que han repostado todos los vehículos:
 
 ```lua
-{ e | ∀m, t, c (                       -- Conjunto de estaciones e para todo m, t, c
-    ∃x (VEHICULO(m, t, c) ⇒ ∀y        -- Existe un tipo x tal que, si el vehículo m es de tipo x,
+{ e | ∀m, t, c (∃x                     -- Conjunto de estaciones e para todo m, t, c
+        (VEHICULO(m, t, c) ⇒ ∀y       -- Existe un tipo x tal que, si el vehículo m es de tipo x,
         (COMBUSTIBLE(m, _, y, _) ⇒    -- entonces para toda estación y en la que repostó el vehículo m,
         x = y))                        -- el tipo de vehículo es igual a x
+)}
+```
+
+```lua
+{ e | ∀m, t, c (∃x 
+    (¬(VEHICULO(m, t, c)) ∨ ∀y 
+        (¬(COMBUSTIBLE(m, _, y, _)) ∨ 
+        x = y))
 )}
 ```
