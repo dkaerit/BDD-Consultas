@@ -47,11 +47,12 @@ d) Estaciones en las que han repostado vehículos de todos los tipos:
 ```
 
 ```lua
-{ e | ∃m, t, c (
-    VEHICULO(m, t, c) ∧
-    COMBUSTIBLE(m, _, e, _) ∧ ∀x 
-        ((VEHICULO(m, x, _) ∧ x ≠ t) ∨ ∃y 
-            (COMBUSTIBLE(m, _, e, _) ∧ x = y))
+{ e | ∃m, t, c (                               -- El vehículo con matrícula 'm' es de tipo 't' y tiene un consumo de combustible 'c'
+    VEHICULO(m, t, c) ∧                        -- El vehículo con matrícula 'm' ha repostado en la estación 'e'
+    COMBUSTIBLE(m, _, e, _) ∧ ∀x               -- Para todo tipo 'x' diferente de 't', si el vehículo 'm' es de tipo 'x'
+        ((VEHICULO(m, x, _) ∧ x ≠ t) ∨ ∃y      -- Entonces existe una estación 'y     
+            (COMBUSTIBLE(m, _, e, _) ∧         -- en la que el vehículo 'm'
+            x = y))                            -- ha repostado y es igual a 'x'
 )}
 ```
 
@@ -66,9 +67,9 @@ e) Estaciones en las que han repostado todos los vehículos:
 ```
 
 ```lua
-{ e | ∀m, t, c (∃x 
-    (¬(VEHICULO(m, t, c)) ∨ ∀y 
-        (¬(COMBUSTIBLE(m, _, y, _)) ∨ 
-        x = y))
+{ e | ∀m, t, c (∃x                    -- Para cada elemento 'e', para todo 'm', 't' y 'c' ...
+    (¬(VEHICULO(m, t, c)) ∨ ∀y        -- Si el vehículo con matrícula 'm' no es de tipo 't' y tiene un consumo de combustible 'c',
+        (¬(COMBUSTIBLE(m, _, y, _)) ∨ -- o bien, si el vehículo con matrícula 'm' no ha repostado en la estación 'y',
+        x = y))                       -- entonces 'x' es igual a 'y'.
 )}
 ```
