@@ -17,7 +17,7 @@ VR_TT = Π(M) (VR_TEXACO / Π(M) VEHICULO) # Vehículos que han repostado en tod
 ```
 
 d) Estaciones que algún día han vendido combustibles de todas las clases:
-```
+```sql
 TODAS_CLASES = Π(C) COMBUSTIBLE # Todas las clases de combustible
 ESTACIONES_TODAS_CLASES = Π(E) (Π(E, C) Σ(C IN TODAS_CLASES) (ESTACION)) # Estaciones con todas las clases de combustible
 ```
