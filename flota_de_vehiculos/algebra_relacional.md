@@ -13,7 +13,7 @@ c) Vehículos que han repostado en todas las estaciones de la cadena TEXACO:
 ```sql
 ET = Π(E) Σ(CAD='TEXACO') (ESTACION) # Estaciones TEXACO
 VR_T = Π(M,E) (COMBUSTIBLE ⨝ ET) (COMBUSTIBLE) # Vehículos repostados en estaciones TEXACO
-VR_TT = Π(M) (VR_TEXACO / Π(M) VEHICULO) # Vehículos que han repostado en todas las estaciones TEXACO
+Π(M) (VR_TEXACO / Π(M) VEHICULO) # Vehículos que han repostado en todas las estaciones TEXACO
 ```
 
 d) Estaciones que algún día han vendido combustibles de todas las clases:
