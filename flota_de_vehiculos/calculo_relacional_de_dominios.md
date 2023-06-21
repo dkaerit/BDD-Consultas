@@ -60,9 +60,9 @@ e) Estaciones en las que han repostado todos los vehículos:
 
 ```lua
 { e | ∀m, t, c (∃x                     -- Conjunto de estaciones e para todo m, t, c
-        (VEHICULO(m, t, c) ⇒ ∀y       -- Existe un tipo x tal que, si el vehículo m es de tipo x,
-        (COMBUSTIBLE(m, _, y, _) ⇒    -- entonces para toda estación y en la que repostó el vehículo m,
-        x = y))                        -- el tipo de vehículo es igual a x
+    (VEHICULO(m, t, c) ⇒ ∀y       -- Existe un tipo x tal que, si el vehículo m es de tipo x,
+    (COMBUSTIBLE(m, _, y, _) ⇒    -- entonces para toda estación y en la que repostó el vehículo m,
+    x = y))                        -- el tipo de vehículo es igual a x
 )}
 ```
 
