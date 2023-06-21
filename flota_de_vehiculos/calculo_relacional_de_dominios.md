@@ -26,7 +26,7 @@ b) Vehículos que han puesto combustible en la estación E1 pero no en la E2:
 c) Vehículos que siempre han repostado el mismo número de litros:
 
 ```lua
-{ v | ∃m, f1, f2, e1, e2, l1, l2 (   -- Conjunto de vehículos v donde existe un m, f1, f2, e1, e2, l1, l2
+{ v | ∃m, f1, f2, e1, e2, l1, l2 (    -- Conjunto de vehículos v donde existe un m, f1, f2, e1, e2, l1, l2
     VEHICULO(v, m, _, _) ∧            -- Vehículo v con matrícula m
     COMBUSTIBLE(m, f1, e1, l1) ∧      -- Vehículo con matrícula m que repostó en la estación e1 con cantidad l1 de combustible
     COMBUSTIBLE(m, f2, e2, l2) ∧      -- Vehículo con matrícula m que repostó en la estación e2 con cantidad l2 de combustible
@@ -40,15 +40,18 @@ d) Estaciones en las que han repostado vehículos de todos los tipos:
 { e | ∃m, t, c (                      -- Conjunto de estaciones e donde existe un m, t, c
     VEHICULO(m, t, c) ∧               -- Vehículo con matrícula m de tipo t y consumo de combustible c
     COMBUSTIBLE(m, _, e, _) ∧         -- Vehículo con matrícula m que repostó en la estación e
-    ∀x (VEHICULO(m, x, _) ⇒ ∃y (COMBUSTIBLE(m, _, e, _) ∧ x = y))  -- Para todo tipo x de vehículo, si el vehículo m es de tipo x, entonces existe una estación y en la que repostó el vehículo m y el tipo de vehículo es igual a x
+    ∀x (VEHICULO(m, x, _) ⇒ ∃y        -- Para todo tipo x de vehículo, si el vehículo m es de tipo x,
+        (COMBUSTIBLE(m, _, e, _) ∧    -- entonces existe una estación y en la que repostó el vehículo m
+        x = y))                       -- y el tipo de vehículo es igual a x
 )}
 ```
 
 e) Estaciones en las que han repostado todos los vehículos:
 
 ```lua
-{ e | ∀ m, t, c (
-    ∃x (VEHICULO(m, t, c) ⇒ ∃y (COMBUSTIBLE(m, _, y, _) ∧ t = x))  -- Existe un tipo x tal que, si el vehículo m es de tipo x, entonces existe una estación y en la que repostó el vehículo m y el tipo de vehículo es igual a x
+{ e | ∀m, t, c (                       -- Conjunto de estaciones e para todo m, t, c
+    ∃x (VEHICULO(m, t, c) ⇒ ∀y        -- Existe un tipo x tal que, si el vehículo m es de tipo x,
+        (COMBUSTIBLE(m, _, y, _) ⇒    -- entonces para toda estación y en la que repostó el vehículo m,
+        x = y))                        -- el tipo de vehículo es igual a x
 )}
-
 ```
