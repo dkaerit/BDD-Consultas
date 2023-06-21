@@ -38,6 +38,8 @@ d) Estaciones en las que han repostado vehículos de todos los tipos:
 
 ```lua
 { e | ∃ m, t, c (                     -- Conjunto de estaciones e donde existe un m, t, c
-    VEHICULO(m, t, c) ∧               -- Vehículo con
-
+    VEHICULO(m, t, c) ∧               -- Vehículo con matrícula m de tipo t y consumo de combustible c
+    COMBUSTIBLE(m, _, e, _) ∧         -- Vehículo con matrícula m que repostó en la estación e
+    ∀ x (VEHICULO(m, x, _) ⇒ ∃ y (COMBUSTIBLE(m, _, e, _) ∧ x = y))  -- Para todo tipo x de vehículo, si el vehículo m es de tipo x, entonces existe una estación y en la que repostó el vehículo m y el tipo de vehículo es igual a x
+)}
 ```
