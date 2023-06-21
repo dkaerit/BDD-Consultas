@@ -5,26 +5,40 @@ a) Estaciones de la cadena DISA que hoy tienen el precio de algún combustible i
 
 b) Vehículos que no han repostado nunca en la estación E1:
 ```sql
-VE_REP_E1 = Π(M) Σ(E='E1') (COMBUSTIBLE)) # Vehiculos repostados en E1
+# Vehiculos repostados en E1
+VE_REP_E1 = Π(M) Σ(E='E1') (COMBUSTIBLE)) 
 VEHICULO - VE_REP_E1
 ```
 
 c) Vehículos que han repostado en todas las estaciones de la cadena TEXACO:
 ```sql
-ESTACIONES_TEXACO = Π(E) Σ(CAD='TEXACO') (ESTACION) # Estaciones TEXACO
-VE_REP_TEXACO = Π(M,E) (COMBUSTIBLE ⨝ ESTACIONES_TEXACO) (COMBUSTIBLE) # Vehículos repostados en estaciones TEXACO
-Π(M) (VE_REP_TEXACO / Π(M) VEHICULO) # Vehículos que han repostado en todas las estaciones TEXACO
+# Estaciones TEXACO
+ESTACIONES_TEXACO = Π(E) Σ(CAD='TEXACO') (ESTACION) 
+
+# Vehículos repostados en estaciones TEXACO
+VE_REP_TEXACO = Π(M,E) (COMBUSTIBLE ⨝ ESTACIONES_TEXACO) (COMBUSTIBLE)
+
+# Vehículos que han repostado en todas las estaciones TEXACO
+Π(M) (VE_REP_TEXACO / Π(M) VEHICULO) 
 ```
 
 d) Estaciones que algún día han vendido combustibles de todas las clases:
 ```sql
-TODAS_CLASES = Π(C) COMBUSTIBLE # Todas las clases de combustible
-Π(E) (Π(E, C) Σ(C IN TODAS_CLASES) (ESTACION)) # Estaciones con todas las clases de combustible
+# Todas las clases de combustible
+TODAS_CLASES = Π(C) COMBUSTIBLE 
+
+# Estaciones con todas las clases de combustible
+Π(E) (Π(E, C) Σ(C IN TODAS_CLASES) (ESTACION)) 
 ```
 
 e) Vehículos que han repostado en todas las estaciones de alguna cadena:
 ```sql
-CADENAS_ESTACIONES = Π(CAD, E) (Π(CAD) ESTACION) # Cadenas y estaciones disponibles
-VEHICULOS_REPOSTADOS_CADENA = Π(M, CAD) Σ(E IN CADENAS_ESTACIONES) (COMBUSTIBLE) # Vehículos repostados en estaciones de cada cadena
-VEHICULOS_REPOSTADOS_TODAS_ESTACIONES = Π(M) (Π(M) VEHICULOS_REPOSTADOS_CADENA / Π(M) VEHICULO) # Vehículos que han repostado en todas las estaciones de alguna cadena
+# Cadenas y estaciones disponibles
+CADENAS_ESTACIONES = Π(CAD, E) (Π(CAD) ESTACION) 
+
+# Vehículos repostados en estaciones de cada cadena
+VEHICULOS_REPOSTADOS_CADENA = Π(M, CAD) Σ(E IN CADENAS_ESTACIONES) (COMBUSTIBLE) 
+
+# Vehículos que han repostado en todas las estaciones de alguna cadena
+VEHICULOS_REPOSTADOS_TODAS_ESTACIONES = Π(M) (Π(M) VEHICULOS_REPOSTADOS_CADENA / Π(M) VEHICULO) 
 ```
