@@ -5,8 +5,8 @@ a) Estaciones de la cadena DISA que hoy tienen el precio de algún combustible i
 
 b) Vehículos que no han repostado nunca en la estación E1:
 ```sql
-VR_E1 = Π(M) Σ(E='E1') (COMBUSTIBLE)) # Vehiculos repostados en E1
-VEHICULO - VR_E1
+VE_REP_E1 = Π(M) Σ(E='E1') (COMBUSTIBLE)) # Vehiculos repostados en E1
+VEHICULO - VE_REP_E1
 ```
 
 c) Vehículos que han repostado en todas las estaciones de la cadena TEXACO:
