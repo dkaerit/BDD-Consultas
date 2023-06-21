@@ -1,6 +1,6 @@
 1) Estaciones de la cadena DISA que hoy tienen el precio de algún combustible inferior a 1.15 euros/litro:
 ```sql
-ESTACIONES_DISA = Π(E) Σ((CAD='DISA') ∧ (P<1.15)) (ESTACION)
+Π(E) Σ((CAD='DISA') ∧ (P<1.15)) (ESTACION)
 ```
 
 2) Vehículos que no han repostado nunca en la estación E1:
