@@ -21,3 +21,10 @@ d) Estaciones que algún día han vendido combustibles de todas las clases:
 TODAS_CLASES = Π(C) COMBUSTIBLE # Todas las clases de combustible
 Π(E) (Π(E, C) Σ(C IN TODAS_CLASES) (ESTACION)) # Estaciones con todas las clases de combustible
 ```
+
+e) Vehículos que han repostado en todas las estaciones de alguna cadena:
+```sql
+CADENAS_ESTACIONES = Π(CAD, E) (Π(CAD) ESTACION) # Cadenas y estaciones disponibles
+VEHICULOS_REPOSTADOS_CADENA = Π(M, CAD) Σ(E IN CADENAS_ESTACIONES) (COMBUSTIBLE) # Vehículos repostados en estaciones de cada cadena
+VEHICULOS_REPOSTADOS_TODAS_ESTACIONES = Π(M) (Π(M) VEHICULOS_REPOSTADOS_CADENA / Π(M) VEHICULO) # Vehículos que han repostado en todas las estaciones de alguna cadena
+```
